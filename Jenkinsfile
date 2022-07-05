@@ -16,23 +16,22 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
-                  stage('Build Image') {
+	stage('Depoly:Build Docker image - locally') {
             steps {
-                script {
-		    bat "docker build -t \"$BUILD_NUMBER\" ./producer"
-                    bat 'echo success build Docker image'
+                script{
+                    bat "docker build -t \"$BUILD_NUMBER\" ."
+                    bat "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
                 }
             }
-        } 
-                  stage('docker push') {
+         }
+	stage('Docker_Backend_testing') {
             steps {
                 script {
-                    bat 'docker tag 20:latest photop/20:latest'
-                    bat 'docker push photop/20:latest'
-		    bat 'echo docker push'
-		     bat "echo seccsses push"
-		     }
-		}
-	    } 
-   }
+                    bat 'docker tag %BUILD_NUMBER%:latest photop/%BUILD_NUMBER%:latest
+                    bat 'docker push photop/%BUILD_NUMBER%:latest'
+		    bat 'echo docker push'	
+                 }
+            }
+        }    	
+    }	
 }

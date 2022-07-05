@@ -27,8 +27,8 @@ pipeline {
                   stage('docker push') {
             steps {
                 script {
-                    bat 'docker tag 'buildnm':latest photop/'buildnm':latest'
-                    bat 'docker push photop/'buildnm':latest'
+                    bat 'docker tag 23:latest photop/23:latest'
+                    bat 'docker push photop/23:latest'
 		    bat 'echo docker push'
 		     bat "echo seccsses push"
 		     }

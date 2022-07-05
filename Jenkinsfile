@@ -16,7 +16,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
-	stage('Depoly:Build Docker image - locally') {
+	stage('Build Docker image - locally') {
             steps {
                 script{
                     bat "docker build -t %BUILD_NUMBER% ./producer"
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
          }
-	stage('Docker_Backend_testing') {
+	stage('docker push') {
             steps {
                 script {
                     bat 'docker tag %BUILD_NUMBER%:latest photop/%BUILD_NUMBER%:latest'

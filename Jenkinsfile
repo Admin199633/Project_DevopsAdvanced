@@ -19,7 +19,6 @@ pipeline {
             steps {
                 script {
                     bat 'cd producer'
-		    bat 'pwd'
 		    bat 'docker build ./producer -f Dockerfile --no-cache --pull --force-rm -t /producer' 
                     bat 'echo success Flask.py'
                 }

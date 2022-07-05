@@ -41,7 +41,14 @@ pipeline {
 		    bat 'echo docker push'	
                  }
             }
-        }  
-  
+        } 
+  	stage('delete helm') {
+            steps {
+                script {
+                    bat 'helm delete release '
+		    bat 'echo delete helm'	
+                 }
+            }
+        } helm delete release 
     }	
 }

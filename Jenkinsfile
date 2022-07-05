@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     bat 'docker tag 20:latest photop/20:latest'
-                    bat 'docker push  photop/micro_focus:20:latest'
+                    bat 'docker push photop/20:latest'
 		    bat 'echo docker push'
 		     bat "echo seccsses push"
 		     }

@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
 	            bat 'helm install release --set rabbitmq.username=admin,rabbitmq.password=secretpassword,rabbitmq.erlangCookie=secretcookie bitnami/rabbitmq' 
-		    bat 'kubectl port-forward svc/rp-rabbitmq 15672:15672'
+		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
 		    bat 'echo docker push'	
                  }
             }

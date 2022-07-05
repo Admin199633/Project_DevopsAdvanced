@@ -15,7 +15,7 @@ pipeline {
                 git 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
-        stage('Flask.py') {
+        stage('Build') {
             steps {
                 script {
 		    bat  'echo hello word'

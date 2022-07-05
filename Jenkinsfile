@@ -26,10 +26,9 @@ pipeline {
                   stage('docker push') {
             steps {
                 script {
-		     dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                     bat 'echo success Build'
                      docker.withRegistry('', registryCredential) {	
                      dockerImage.push() 	 
+		     bat "echo seccsses push"
 		     }
 		}
 	    } 

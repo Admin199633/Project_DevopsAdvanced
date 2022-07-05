@@ -24,6 +24,8 @@ pipeline {
 		    bat 'echo secsses'
                 }
             }
+	} 
         }
+	}
     }
 }

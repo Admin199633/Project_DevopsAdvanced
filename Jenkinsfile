@@ -18,8 +18,9 @@ pipeline {
                   stage('Flask.py') {
             steps {
                 script {
-                    bat 'start /min python Flask.py'
-                    bat 'echo success Flask.py'
+                    bat 'cd producer'
+                    bat 'docker build . -f Dockerfile --no-cache --pull --force-rm -t photop/micro_focus/producer'
+		    bat 'echo secsses'
                 }
             }
         }

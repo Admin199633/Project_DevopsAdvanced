@@ -15,14 +15,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
-                  stage('Build Image') {
-            steps {
-                script {
-		    bat "docker build -t \"$BUILD_NUMBER\" ./producer"
-                    bat 'echo success build Docker image'
-                }
-            }
-        } 
+//                   stage('Build Image') {
+//             steps {
+//                 script {
+// 		    bat "docker build -t \"$BUILD_NUMBER\" ./producer"
+//                     bat 'echo success build Docker image'
+//                 }
+//             }
+//         } 
                   stage('docker push') {
             steps {
                 script {

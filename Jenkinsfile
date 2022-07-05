@@ -4,7 +4,7 @@ pipeline {
         registry = "photop/micro_focus" 
         registryCredential = 'dockerhub_id'
         dockerImage = ""
-	buildnm= ""
+	buildnm= "%BUILD_NUMBER%"
     } 
     stages {
         stage('properties') {
@@ -27,8 +27,6 @@ pipeline {
                   stage('docker push') {
             steps {
                 script {
-		    bat buildnm= "%BUILD_NUMBER%"
-			bat 'echo' buildnm
                     bat 'docker tag 'buildnm':latest photop/'buildnm':latest'
                     bat 'docker push photop/'buildnm':latest'
 		    bat 'echo docker push'

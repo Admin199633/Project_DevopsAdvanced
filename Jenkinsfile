@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     bat 'cd producer'
-		    bat 'docker build ./producer -f Dockerfile --no-cache --pull --force-rm -t /producer' 
+		    bat 'bat "docker build -t \"$BUILD_NUMBER\" ./producer"' 
                     bat 'echo success Flask.py'
                 }
             }

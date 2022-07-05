@@ -26,9 +26,9 @@ pipeline {
         } 
                   stage('docker push') {
             steps {
-                script {
+                script { photop/micro_focus
                     bat 'docker tag 23:latest photop/23:latest'
-                    bat 'docker push photop/23:latest'
+                    bat 'docker push  photop/micro_focus:23'
 		    bat 'echo docker push'
 		     bat "echo seccsses push"
 		     }

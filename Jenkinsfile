@@ -12,7 +12,7 @@ ipeline {
                     properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
                     properties([buildDiscarder(logRotator(daysToKeepStr: '5', numToKeepStr: '20')),])
                 }
-                git 'https://github.com/photop33/Micro-Focus.git'
+                git 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
                   stage('Flask.py') {

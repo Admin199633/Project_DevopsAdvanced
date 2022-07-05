@@ -26,11 +26,9 @@ pipeline {
                   stage('docker push') {
             steps {
                 script {
-			bat "docker build . -f Dockerfile --no-cache --pull --force-rm -t photop/producer"
-// 		      dockerImage = docker.build registry + ":$BUILD_NUMBER" "./producer"
-// 		      bat 'echo success Build'
-//                      docker.withRegistry('', registryCredential) {	
-//                      dockerImage.push() 	 
+                    bat 'docker tag "%BUILD_NUMBER%":latest photop/%BUILD_NUMBER%:latest
+                    bat 'docker push photop/%BUILD_NUMBER%:latest'
+		    bat 'echo docker push'
 		     bat "echo seccsses push"
 		     }
 		}

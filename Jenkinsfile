@@ -21,7 +21,7 @@ pipeline {
                 script {
 	            bat 'helm install release --set rabbitmq.username=admin,rabbitmq.password=secretpassword,rabbitmq.erlangCookie=secretcookie bitnami/rabbitmq' 
 	            bat 'ping -n 30 127.0.0.1 > nul'
-		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
+// 		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
 		    bat 'echo docker push'	
                  }
             }

@@ -15,14 +15,23 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
         }
-                  stage('Flask.py') {
+                  stage('Build Image') {
             steps {
                 script {
-                    bat 'cd producer'
 		    bat "docker build -t \"$BUILD_NUMBER\" ./producer"
-                    bat 'echo success Flask.py'
+                    bat 'echo success build Docker image'
                 }
             }
         } 
+                  stage('docker push') {
+            steps {
+                script {
+		     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                     bat 'echo success Build'
+                     docker.withRegistry('', registryCredential) {	
+                     dockerImage.push() 	 
+		     }
+		}
+	    } 
     }
-  }
+}

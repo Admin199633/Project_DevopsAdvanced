@@ -15,7 +15,16 @@ pipeline {
                 }
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
-        }
+        }	
+	stage('rabbitmq') {
+            steps {
+                script {
+	            bat 'helm install release --set rabbitmq.username=admin,rabbitmq.password=secretpassword,rabbitmq.erlangCookie=secretcookie bitnami/rabbitmq' 
+		    bat 'kubectl port-forward svc/rp-rabbitmq 15672:15672'
+		    bat 'echo docker push'	
+                 }
+            }
+        }  
 	stage('Build Docker image - locally') {
             steps {
                 script{
@@ -33,14 +42,6 @@ pipeline {
                  }
             }
         }  
-	stage('rabbitmq') {
-            steps {
-                script {
-	            bat 'helm install release --set rabbitmq.username=admin,rabbitmq.password=secretpassword,rabbitmq.erlangCookie=secretcookie bitnami/rabbitmq' 
-		    bat 'kubectl port-forward svc/rp-rabbitmq 15672:15672'
-		    bat 'echo docker push'	
-                 }
-            }
-        }    
+  
     }	
 }

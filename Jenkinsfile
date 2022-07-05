@@ -49,6 +49,6 @@ pipeline {
 		    bat 'echo delete helm'	
                  }
             }
-        } helm delete release 
+        }
     }	
 }

@@ -43,13 +43,13 @@ pipeline {
                  }
             }
         } 
-  	stage('delete helm') {
-            steps {
-                script {
-                    bat 'helm delete release '
-		    bat 'echo delete helm'	
-                 }
-            }
-        }
+//   	stage('delete helm') {
+//             steps {
+//                 script {
+//                     bat 'helm delete release '
+// 		    bat 'echo delete helm'	
+//                  }
+//             }
+//         }
     }	
 }

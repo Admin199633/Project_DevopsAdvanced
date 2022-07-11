@@ -45,8 +45,8 @@ pipeline {
 	stage('docker push') {
             steps {
                 script {
-                    bat 'docker photop/Devops:%BUILD_NUMBER%'
-                    bat 'docker push photop/%BUILD_NUMBER%:latest'
+                    bat 'bat docker tag Devops:%BUILD_NUMBER% photop/Devops:%BUILD_NUMBER%'
+                    bat 'docker push photop/Devops:%BUILD_NUMBER%'
 		    bat 'echo docker push'	
                  }
             }

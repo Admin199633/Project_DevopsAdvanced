@@ -57,7 +57,7 @@ pipeline {
                     bat 'cd helm-project'
 		    bat 'dir'
 	            bat 'helm create poducer'
-                    bat 'helm install producer --set image.tag=%BUILD_NUMBER% C:\Users\LS\.jenkins\workspace\devops\helm-project '
+                    bat 'helm install producer --set image.tag=%BUILD_NUMBER% "C:\Users\LS\.jenkins\workspace\devops\helm-project" '
 		    bat 'kubectl get pods'	
                  }
             }

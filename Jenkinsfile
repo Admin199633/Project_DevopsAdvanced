@@ -51,11 +51,20 @@ pipeline {
                  }
             }
         } 
-        stage('Helm create') {
+        stage('Helm create producer') {
             steps {
                 script {
 	            bat 'helm create poducer'
                     bat 'helm install producer --set image.tag=%BUILD_NUMBER% ./producer-helm '
+		    bat 'kubectl get pods'	
+                 }
+            }
+        } 
+        stage('Helm create consumer') {
+            steps {
+                script {
+	            bat 'helm create consumer'
+                    bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
 		    bat 'kubectl get pods'	
                  }
             }

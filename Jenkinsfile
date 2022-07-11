@@ -54,8 +54,6 @@ pipeline {
         stage('Helm create') {
             steps {
                 script {
-                    bat 'cd helm-project'
-		    bat 'dir'
 	            bat 'helm create poducer'
                     bat 'helm install producer --set image.tag=%BUILD_NUMBER% ./producer-helm '
 		    bat 'kubectl get pods'	

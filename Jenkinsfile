@@ -1,7 +1,7 @@
 podTemplate(containers: [
     containerTemplate(
-        name: 'jnlp', 
-        image: 'jenkins/inbound-agent:latest'
+        name: 'TEST', 
+        image: 'docker:19.03.1-dind'
         )
   ]) {
 

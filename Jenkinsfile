@@ -19,8 +19,8 @@ pipeline {
 	stage('delete helm') {
             steps {
                 script {
-                    bat 'helm delete rabbitmq '
-		    bat 'echo delete helm'	
+                    sh 'helm delete rabbitmq '
+		    sh 'echo delete helm'	
                  }
             }
         }

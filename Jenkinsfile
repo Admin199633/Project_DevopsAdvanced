@@ -27,18 +27,18 @@ pipeline {
 	stage('rabbitmq') {
             steps {
                 script {
-	            bat 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
+	            sh 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 // 	            bat 'ping -n 30 127.0.0.1 > nul'
 // 		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
-		    bat 'echo docker push'	
+		    sh 'echo docker push'	
                  }
             }
         }  
 	stage('Build Docker image - locally') {
             steps {
                 script{
-                    bat "docker build -t devops:%BUILD_NUMBER% ./producer"
-                    bat "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
+                    sh "docker build -t devops:%BUILD_NUMBER% ./producer"
+                    sh "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
                 }
             }
          }

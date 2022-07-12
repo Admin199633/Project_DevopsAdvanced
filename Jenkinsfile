@@ -72,7 +72,7 @@ pipeline {
         } 
 
     }	
-}
+}{
 podTemplate(yaml: '''
 apiVersion: v1
 kind: Pod
@@ -85,4 +85,4 @@ spec:
     env:
       - name: DOCKER_TLS_CERTDIR
         value: ""
-''')
+''')}

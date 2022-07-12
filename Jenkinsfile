@@ -1,4 +1,4 @@
-odTemplate(yaml: '''
+PodTemplate(yaml: '''
 apiVersion: v1
 kind: Pod
 spec:

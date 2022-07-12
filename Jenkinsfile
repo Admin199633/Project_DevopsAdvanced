@@ -20,7 +20,8 @@ pipeline {
             steps {
                 script {
 //                     sh 'helm delete rabbitmq '
-		    sh 'echo delete helm'	
+		    sh 'echo delete helm'
+		    sh 'echo KAKI Gadol'
                 }
             }
         }

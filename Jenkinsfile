@@ -19,7 +19,7 @@ pipeline {
 	stage('delete helm') {
             steps {
                 script {
-//                     sh 'helm delete rabbitmq '
+                    bat 'helm delete rabbitmq '
 		    bat 'echo delete helm'
 		    bat 'echo KAKI Gadol'
                 }
@@ -31,7 +31,6 @@ pipeline {
 		    bat 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
 	            bat 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 // 	            bat 'ping -n 30 127.0.0.1 > nul'
-// 		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
 		    bat 'echo docker push'	
                  }
             }

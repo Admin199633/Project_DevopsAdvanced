@@ -1,20 +1,13 @@
-podTemplate(containers: [
-    containerTemplate(
-        name: 'test', 
-        image: 'jenkinsci/jnlp-slave:alpine'
-        )
-  ]) {
-
-    node(POD_LABEL) {
-        stage('Get a Maven project') {
-            container('jnlp') {
-                stage('Shell Execution') {
-                    sh '''
-                    echo "Hello! I am executing shell"
-                    '''
-                }
-            }
-        }
-
-    }
-}
+podTemplate(yaml: '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
+    env:
+      - name: DOCKER_TLS_CERTDIR
+        value: ""
+''')

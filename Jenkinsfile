@@ -1,6 +1,4 @@
-pipeline {
-	agent {
-		pipeline { 
+pipeline { 
     agent any
     environment { 
         registry = "photop/micro_focus" 

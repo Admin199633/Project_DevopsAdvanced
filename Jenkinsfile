@@ -1,6 +1,6 @@
 podTemplate(containers: [
     containerTemplate(
-        name: 'TEST', 
+        name: 'test', 
         image: 'docker:19.03.1-dind'
         )
   ]) {

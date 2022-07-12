@@ -11,7 +11,6 @@ spec:
       - name: DOCKER_TLS_CERTDIR
         value: ""
 ''') 
-----
 pipeline { 
     agent any
     environment { 

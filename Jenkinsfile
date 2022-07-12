@@ -16,14 +16,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
         }	
-	stage('delete helm') {
-            steps {
-                script {
-                    sh 'helm delete rabbitmq '
-		    sh 'echo delete helm'	
-                 }
-            }
-        }
+// 	stage('delete helm') {
+//             steps {
+//                 script {
+//                     sh 'helm delete rabbitmq '
+// 		    sh 'echo delete helm'	
+//                  }
+//             }
+//         }
 	stage('rabbitmq') {
             steps {
                 script {

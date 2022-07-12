@@ -21,9 +21,9 @@ pipeline {
                 script {
 //                     sh 'helm delete rabbitmq '
 		    sh 'echo delete helm'	
-//                  }
-//             }
-//         }
+                }
+            }
+        }
 	stage('rabbitmq') {
             steps {
                 script {

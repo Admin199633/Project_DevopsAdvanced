@@ -23,7 +23,7 @@ spec:
 	node(POD_LABEL) {
 		git 'https://github.com/jenkinsci/docker-jnlp-slave.git'
 		container('docker') {
-			sh 'docker version'
+			bat 'docker version'
 		}
 	}
 }

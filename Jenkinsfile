@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
 		    bat 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
-	            bat 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
+	            bat 'helm install rabbitmq --set auth.username=admin,auth.password=Lior12345,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 // 	            bat 'ping -n 30 127.0.0.1 > nul'
 		    bat 'echo docker push'	
                  }

@@ -3,7 +3,7 @@ from argparse import RawTextHelpFormatter
 from time import sleep
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + " -p 15672 -s rabbitmq -m 'Hello' "
+    examples = sys.argv[0] + " -p 5672 -s localhost -m 'Hello' "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run producer.py',
                                  epilog=examples)
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
-    credentials = pika.PlainCredentials('guest', 'guest')
+    credentials = pika.PlainCredentials('admin', 'secretpassword')
     parameters = pika.ConnectionParameters(args.server,
                                            int(args.port),
                                            '/',

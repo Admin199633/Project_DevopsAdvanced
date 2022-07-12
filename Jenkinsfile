@@ -20,27 +20,27 @@ pipeline {
             steps {
                 script {
 //                     sh 'helm delete rabbitmq '
-		    sh 'echo delete helm'
-		    sh 'echo KAKI Gadol'
+		    bat 'echo delete helm'
+		    bat 'echo KAKI Gadol'
                 }
             }
         }
 	stage('rabbitmq') {
             steps {
                 script {
-		    sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
-	            sh 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
+		    bat 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
+	            bat 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 // 	            bat 'ping -n 30 127.0.0.1 > nul'
 // 		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'
-		    sh 'echo docker push'	
+		    bat 'echo docker push'	
                  }
             }
         }  
 	stage('Build Docker image - locally') {
             steps {
                 script{
-                    sh "docker build -t devops:%BUILD_NUMBER% ./producer"
-                    sh "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
+                    bat "docker build -t devops:%BUILD_NUMBER% ./producer"
+                    bat "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
                 }
             }
          }

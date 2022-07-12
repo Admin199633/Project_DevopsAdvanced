@@ -1,7 +1,7 @@
 podTemplate(containers: [
     containerTemplate(
         name: 'test', 
-        image: 'docker:19.03.1-dind'
+        image: 'jenkinsci/jnlp-slave:alpine'
         )
   ]) {
 

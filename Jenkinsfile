@@ -28,6 +28,7 @@ pipeline {
 	stage('rabbitmq') {
             steps {
                 script {
+		    sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
 	            sh 'helm install rabbitmq --set auth.username=admin,auth.password=secretpassword,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 // 	            bat 'ping -n 30 127.0.0.1 > nul'
 // 		    bat 'kubectl port-forward svc/release-rabbitmq 15672:15672'

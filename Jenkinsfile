@@ -28,7 +28,6 @@ pipeline {
 	stage('rabbitmq') {
             steps {
                 script {
-		    bat 'helm repo add bitnami https://charts.bitnami.com/bitnami'	
 	            bat 'helm install rabbitmq --set auth.username=user,auth.password=Lior12345,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
 	            bat 'ping -n 30 127.0.0.1 > nul'
 		    bat 'start /min python kubectl-cmd.py'	

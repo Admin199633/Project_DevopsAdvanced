@@ -71,6 +71,8 @@ pipeline {
                  }
             }
         } 
+    }
+}
 // kubernetes {
 // 			//cloud 'kubernetes'
 //      yaml """

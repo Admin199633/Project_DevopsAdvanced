@@ -68,6 +68,7 @@ pipeline {
                 script {
 	            bat 'helm create consumer'
                     bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
+		    bat 'python ./consumer/consumer.py -p 5672 -s localhost
 		    bat 'kubectl get pods'	
                  }
             }

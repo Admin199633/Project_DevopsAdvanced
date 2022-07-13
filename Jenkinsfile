@@ -32,7 +32,7 @@ pipeline {
 	            bat 'ping -n 30 127.0.0.1 > nul'
 		    bat 'kubectl get pods'
 		    bat 'echo rabbitmq'	
-		    bat 'start /min python kubectl-cmd.py'	
+		    bat 'start python kubectl-cmd.py'	
                  }
             }
         }  

@@ -19,7 +19,7 @@ pipeline {
 	stage('delete helm') {
             steps {
                 script {
-//                     bat 'helm delete rabbitmq '
+                    bat 'helm delete rabbitmq '
 		    bat 'echo delete helm'
 		    bat 'echo KAKI Gadol'
                 }

@@ -21,6 +21,7 @@ spec:
         {{- include "consumer.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
+      restartPolicy: true
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}

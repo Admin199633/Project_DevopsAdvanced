@@ -58,6 +58,7 @@ pipeline {
                 script {
 	            bat 'helm create poducer'
                     bat 'helm install producer --set image.tag=%BUILD_NUMBER% ./producer-helm '
+		    bat 'python ./producer/producer.py -p 5672 -s localhost -m "Hello" -r 30'
 		    bat 'kubectl get pods'	
                  }
             }

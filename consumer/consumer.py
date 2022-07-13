@@ -30,7 +30,7 @@ if __name__ == '__main__':
     sleep(5)
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
-    credentials = pika.PlainCredentials('admin', 'Lior12345')
+    credentials = pika.PlainCredentials('user', 'Lior12345')
     parameters = pika.ConnectionParameters(args.server,
                                            int(args.port),
                                            '/',

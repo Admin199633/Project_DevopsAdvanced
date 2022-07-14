@@ -91,7 +91,6 @@ spec:
         value: ""
 """
 		}
-	}
 	stages {
 		stage('Run maven') {
 			steps {

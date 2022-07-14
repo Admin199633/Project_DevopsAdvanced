@@ -1,11 +1,5 @@
 pipeline { 
     agent any
-    environment { 
-        registry = "photop/micro_focus" 
-        registryCredential = 'dockerhub_id'
-        dockerImage = ""
-	buildnm= "%BUILD_NUMBER%"
-    } 
     stages {
         stage('properties') {
             steps {
@@ -40,7 +34,6 @@ pipeline {
             steps {
                 script{
                     bat "docker build -t devops:%BUILD_NUMBER% ./producer"
-                    bat "start docker run -p 127.0.0.1:8777:8777 $BUILD_NUMBER "
                 }
             }
          }

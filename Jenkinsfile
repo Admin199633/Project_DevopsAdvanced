@@ -29,7 +29,7 @@ pipeline {
 	stage('rabbitmq') {
             steps {
                 script {
-	            bat 'helm install rabbitmq --set auth.username=user,auth.password=Lior12345,auth.erlangCookie=secretcookie bitnami/rabbitmq' 
+	            bat 'helm install rabbitmq --set auth.username=user,auth.password=Lior12345,auth.erlangCookie=secretcookie,metrics.enabled=true bitnami/rabbitmq' 
 	            bat 'ping -n 45 127.0.0.1 > nul'
 		    bat 'kubectl get pods'
 		    bat 'echo rabbitmq'	

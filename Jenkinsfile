@@ -91,13 +91,11 @@ spec:
         value: ""
 """
 		}
-	stages {
 		stage('Run maven') {
 			steps {
 				container('maven') {
 					sh 'mvn -version'
 					sh 'sleep 300'
-				}
 			}
 		}
 	}

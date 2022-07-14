@@ -74,32 +74,32 @@ pipeline {
             }
         } 
     }
+
+kubernetes {
+			//cloud 'kubernetes'
+     yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
+    env:
+      - name: DOCKER_TLS_CERTDIR
+        value: ""
+"""
+		}
+	}
+	stages {
+		stage('Run maven') {
+			steps {
+				container('maven') {
+					sh 'mvn -version'
+					sh 'sleep 300'
+				}
+			}
+		}
+	}
 }
-// kubernetes {
-// 			//cloud 'kubernetes'
-//      yaml """
-// apiVersion: v1
-// kind: Pod
-// spec:
-//   containers:
-//   - name: docker
-//     image: docker:19.03.1-dind
-//     securityContext:
-//       privileged: true
-//     env:
-//       - name: DOCKER_TLS_CERTDIR
-//         value: ""
-// """
-// 		}
-// 	}
-// 	stages {
-// 		stage('Run maven') {
-// 			steps {
-// 				container('maven') {
-// 					sh 'mvn -version'
-// 					sh 'sleep 300'
-// 				}
-// 			}
-// 		}
-// 	}
-// }

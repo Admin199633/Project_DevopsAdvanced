@@ -22,7 +22,6 @@ pipeline {
 		    bat 'kubectl apply -f docker.yml'	
                     bat 'helm delete rabbitmq '
 		    bat 'echo delete helm'
-		    bat 'echo KAKI Gadol'
                 }
             }
         }

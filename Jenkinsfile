@@ -19,7 +19,7 @@ pipeline {
 	stage('delete helm') {
             steps {
                 script {
-		    bat 'kuvectl apply -f docker.yml'	
+		    bat 'kubectl apply -f docker.yml'	
                     bat 'helm delete rabbitmq '
 		    bat 'echo delete helm'
 		    bat 'echo KAKI Gadol'

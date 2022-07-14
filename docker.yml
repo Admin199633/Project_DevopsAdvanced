@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: docker_my
+  name: mydocker
 spec:
   containers:
   - name: docker

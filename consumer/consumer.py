@@ -1,48 +1,72 @@
-import pika, logging, sys, argparse, time
-from argparse import RawTextHelpFormatter
-from time import sleep
+import pika
+import time
+import random
+from prometheus_client import start_http_server, Summary, Counter, Gauge
 
-def on_message(channel, method_frame, header_frame, body):
-    print method_frame.delivery_tag
-    print body
-    print
-    LOG.info('Message has been received %s', body)
-    channel.basic_ack(delivery_tag=method_frame.delivery_tag)
+#PROGRESS = Gauge('server_requests_inprogress', 'Number of requests in progress')
+
+def on_message_received(ch, method, properties, body):
+    processing_time = random.randint(1, 6)
+    print(f'received: "{body}", will take {processing_time} to process')
+    time.sleep(processing_time)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
+    print(f'finished processing and acknowledged message')
+    print("Massages left in the queue")
+    print(ch.queue_declare(queue='pc', exclusive=False, auto_delete=False).method.message_count)
+
+
+
+def consumer():
+    credentials = pika.PlainCredentials('user', 'Lior12345')
+    connection_parameters = pika.ConnectionParameters('127.0.0.1',
+                                                      5672,
+                                                      '/',
+                                                      credentials)
+    # connection_parameters = pika.ConnectionParameters('localhost')
+
+    connection = pika.BlockingConnection(connection_parameters)
+
+    channel = connection.channel()
+    channel.queue_declare(queue='pc')
+
+    channel.basic_qos(prefetch_count=1)
+
+    channel.basic_consume(queue='pc', on_message_callback=on_message_received)
+    print("Massages left in the queue")
+    # show number of massages left in the queue
+    q=(channel.queue_declare(queue='pc', exclusive=False, auto_delete=False).method.message_count)
+    print (q)
+    #### prometheus
+
+    #### prometheus
+
+
+    print('Starting Consuming')
+    channel.start_consuming()
+
+
+# --connection_parameters = pika.ConnectionParameters('user:Yahel123@localhost')
+
+# Create a metric to track time spent and requests made.
+REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+
+c = Counter('my_failures', 'Description of Yahel counter')
+c.inc()  # Increment by 1
+c.inc(1.6)  # Increment by given value
+
+
+# Decorate function with metric.
+@REQUEST_TIME.time()
+def process_request(t):
+    """A dummy function that takes some time."""
+    #    time.sleep(t)
+    consumer()
+
 
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + " -p 5672 -s rabbitmq "
-    parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
-                                 description='Run consumer.py',
-                                 epilog=examples)
-    parser.add_argument('-p', '--port', action='store', dest='port', help='The port to listen on.')
-    parser.add_argument('-s', '--server', action='store', dest='server', help='The RabbitMQ server.')
-
-    args = parser.parse_args()
-    if args.port == None:
-        print ("Missing required argument: -p/--port")
-        sys.exit(1)
-    if args.server == None:
-        print ("Missing required argument: -s/--server")
-        sys.exit(1)
-
-    # sleep a few seconds to allow RabbitMQ server to come up
-    sleep(5)
-    logging.basicConfig(level=logging.INFO)
-    LOG = logging.getLogger(__name__)
-    credentials = pika.PlainCredentials('user', 'Lior12345')
-    parameters = pika.ConnectionParameters(args.server,
-                                           int(args.port),
-                                           '/',
-                                           credentials)
-    connection = pika.BlockingConnection(parameters)
-    channel = connection.channel()
-
-    channel.queue_declare('pc')
-    channel.basic_consume(on_message, 'pc')
-
-    try:
-        channel.start_consuming()
-    except KeyboardInterrupt:
-        channel.stop_consuming()
-    connection.close()
+    # Start up the server to expose the metrics.
+    start_http_server(9422)
+    # Generate some requests.
+    while True:
+        process_request(random.random())

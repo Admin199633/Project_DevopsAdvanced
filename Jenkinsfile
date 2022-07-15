@@ -21,7 +21,7 @@ pipeline {
 	stage('Clean env') {
             steps {
                 script {
-                    bat 'helm delete rabbitmq '
+                    bat 'helm delete rabbitmq consumer producer '
 		    bat 'echo delete helm'
                 }
             }
@@ -63,15 +63,15 @@ pipeline {
                  }
             }
         } 
-//         stage('Helm create consumer') {
-//             steps {
-//                 script {
-// 	            bat 'helm create consumer'
-//                     bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
-// 		    bat 'start /min python ./consumer/consumer.py -p 5672 -s localhost'
-// 		    bat 'kubectl get pods'	
-//                  }
-//             }
-//         } 
+        stage('Helm create consumer') {
+            steps {
+                script {
+	            bat 'helm create consumer'
+                    bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
+		    bat 'start /min python ./consumer/consumer.py -p 5672 -s localhost'
+		    bat 'kubectl get pods'	
+                 }
+            }
+        } 
     }
 }

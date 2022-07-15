@@ -69,14 +69,14 @@ pipeline {
             steps {
                 script {
 	            bat 'helm install grafana grafana/grafana'
-	            bat 'helm install prometheus bitnami/kube-prometheuss '
+	            bat 'helm install prometheus bitnami/kube-prometheus '
                 }
             }
         }
 	stage('Clean env') {
             steps {
                 script {
-                    bat 'helm delete rabbitmq consumer producer '
+                    bat 'helm delete rabbitmq consumer producer grafana prometheus '
 		    bat 'echo delete helm'
                 }
             }

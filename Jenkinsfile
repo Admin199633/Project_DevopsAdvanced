@@ -69,7 +69,7 @@ pipeline {
             steps {
                 script {
 	            bat 'helm install grafana grafana/grafana'
-	            bat 'helm install prometheus prometheus/prometheus '
+	            bat 'helm install prometheus bitnami/kube-prometheuss '
                 }
             }
         }

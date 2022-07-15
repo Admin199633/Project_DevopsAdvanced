@@ -9,11 +9,18 @@ pipeline {
                 }
                 git branch: 'main', url: 'https://github.com/Admin199633/Project_Devops.git'
             }
-        }	
-	stage('delete helm') {
+        }
+	stage('Creata DND(docker in docker)') {
             steps {
                 script {
-		    bat 'kubectl apply -f docker.yml'	
+		    bat 'kubectl apply -f docker.yml'
+		    bat 'echo docker in docker'
+                }
+            }
+        }
+	stage('Clean env') {
+            steps {
+                script {
                     bat 'helm delete rabbitmq '
 		    bat 'echo delete helm'
                 }
@@ -56,15 +63,15 @@ pipeline {
                  }
             }
         } 
-        stage('Helm create consumer') {
-            steps {
-                script {
-	            bat 'helm create consumer'
-                    bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
-		    bat 'start /min python ./consumer/consumer.py -p 5672 -s localhost'
-		    bat 'kubectl get pods'	
-                 }
-            }
-        } 
-    }
-}
+//         stage('Helm create consumer') {
+//             steps {
+//                 script {
+// 	            bat 'helm create consumer'
+//                     bat 'helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm '
+// 		    bat 'start /min python ./consumer/consumer.py -p 5672 -s localhost'
+// 		    bat 'kubectl get pods'	
+//                  }
+//             }
+//         } 
+//     }
+// }

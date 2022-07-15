@@ -64,7 +64,15 @@ pipeline {
 		    bat 'kubectl get pods'	
                  }
             }
-        } 
+        } 	
+	stage('Helm Create monitoring') {
+            steps {
+                script {
+	            bat 'helm create grafana grafana/grafana'
+	            bat 'helm create prometheus prometheus/prometheus '
+                }
+            }
+        }
 	stage('Clean env') {
             steps {
                 script {

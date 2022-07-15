@@ -25,7 +25,7 @@ pipeline {
 	            bat 'ping -n 45 127.0.0.1 > nul'
 		    bat 'kubectl get pods'
 		    bat 'echo rabbitmq'	
-		    bat 'python ./expose-RabbitMQ.py'	
+		    bat 'start /min python ./expose-RabbitMQ.py'	
                  }
             }
         }  

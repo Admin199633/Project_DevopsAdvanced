@@ -18,14 +18,6 @@ pipeline {
                 }
             }
         }
-	stage('Clean env') {
-            steps {
-                script {
-                    bat 'helm delete rabbitmq consumer producer '
-		    bat 'echo delete helm'
-                }
-            }
-        }
 	stage('rabbitmq') {
             steps {
                 script {
@@ -73,5 +65,13 @@ pipeline {
                  }
             }
         } 
+	stage('Clean env') {
+            steps {
+                script {
+                    bat 'helm delete rabbitmq consumer producer '
+		    bat 'echo delete helm'
+                }
+            }
+        }
     }
 }

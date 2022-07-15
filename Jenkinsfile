@@ -68,7 +68,7 @@ pipeline {
 	stage('Helm Create monitoring') {
             steps {
                 script {
-	            bat 'helm install grafana grafana/grafana'
+	            bat 'helm install grafana ./grafana'	
 	            bat 'helm install prometheus bitnami/kube-prometheus '
 		    bat 'start min/ python expose-RabbitMQ.py '
                 }

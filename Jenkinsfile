@@ -68,8 +68,8 @@ pipeline {
 	stage('Helm Create monitoring') {
             steps {
                 script {
-	            bat 'helm create grafana grafana/grafana'
-	            bat 'helm create prometheus prometheus/prometheus '
+	            bat 'helm install grafana grafana/grafana'
+	            bat 'helm install prometheus prometheus/prometheus '
                 }
             }
         }

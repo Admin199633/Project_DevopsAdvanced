@@ -74,13 +74,13 @@ pipeline {
                 }
             }
         }
-	stage('Clean env') {
-            steps {
-                script {
-                    bat 'helm delete rabbitmq consumer producer grafana prometheus '
-		    bat 'echo delete helm'
-                }
-            }
-        }
+// 	stage('Clean env') {
+//             steps {
+//                 script {
+//                     bat 'helm delete rabbitmq consumer producer grafana prometheus '
+// 		    bat 'echo delete helm'
+//                 }
+//             }
+//         }
     }
 }

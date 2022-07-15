@@ -25,7 +25,7 @@ pipeline {
 	            bat 'ping -n 45 127.0.0.1 > nul'
 		    bat 'kubectl get pods'
 		    bat 'echo rabbitmq'	
-		    bat 'start python ./expose-RabbitMQ.py'	
+		    bat 'python ./expose-RabbitMQ.py'	
                  }
             }
         }  
@@ -70,7 +70,7 @@ pipeline {
                 script {
 	            bat 'helm install grafana ./grafana'	
 	            bat 'helm install prometheus bitnami/kube-prometheus '
-		    bat 'start python expose-RabbitMQ.py '
+		    bat 'start python expose-.py '
                 }
             }
         }
@@ -82,5 +82,6 @@ pipeline {
 //                 }
 //             }
 //         }
+	    
     }
 }

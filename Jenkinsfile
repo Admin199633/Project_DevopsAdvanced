@@ -75,6 +75,7 @@ pipeline {
 	            bat 'kubectl apply -f monitoring/config.yml'
 		    bat 'helm install -f monitoring/values.yml  --namespace monitoring  grafana grafana/grafana'	
 		    bat 'start python expose-grafana.py '
+		    bat 'ping -n 100 127.0.0.1 > nul'	
                 }
             }
         }

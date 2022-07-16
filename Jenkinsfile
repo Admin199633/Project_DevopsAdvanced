@@ -66,11 +66,15 @@ pipeline {
                  }
             }
         } 	
-	stage('Helm Create monitoring') {
+	stage('monitoring') {
             steps {
                 script {
-	            bat 'helm install grafana ./grafana'	
-	            bat 'helm install prometheus bitnami/kube-prometheus '
+		    bat 'helm repo update
+		    bat 'helm install prometheus --namespace monitoring   prometheus-community/prometheus'	
+	            bat 'kubectl apply -f monitoring/config.yml'
+		    bat	'kubectl get configmaps -n monitoring'
+		    bat 'helm install -f values.yml  --namespace monitoring  grafana grafana/grafana'	
+		    bat 'helm install grafana ./grafana'	
 		    bat 'start python expose-.py '
                 }
             }

@@ -69,7 +69,7 @@ pipeline {
 	stage('monitoring') {
             steps {
                 script {
-		    bat 'helm repo update
+		    bat 'helm repo update'
 		    bat 'helm install prometheus --namespace monitoring   prometheus-community/prometheus'	
 	            bat 'kubectl apply -f monitoring/config.yml'
 		    bat	'kubectl get configmaps -n monitoring'

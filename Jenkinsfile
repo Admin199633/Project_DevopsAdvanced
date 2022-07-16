@@ -77,6 +77,8 @@ pipeline {
 		    bat 'kubectl get pods -n monitoring'	
 		    bat 'ping -n 25 127.0.0.1 > nul'	
 		    bat 'start python expose-grafana.py'
+		    bat 'ping -n 25 127.0.0.1 > nul'	
+
                 }
             }
         }

@@ -24,8 +24,5 @@ data:
   my-dashboard.json: |-
     {
       "annotations": {
-        "list": [
-.
-. this is were your dashboard json goes
-.  
+        "list": []
    }

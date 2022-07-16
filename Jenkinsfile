@@ -70,9 +70,11 @@ pipeline {
             steps {
                 script {
 		    bat 'helm repo update'
+		    bat 'kubectl apply -f ./monitoring/namespace.yml '
 		    bat 'helm install prometheus --namespace monitoring   prometheus-community/prometheus'	
 	            bat 'kubectl apply -f monitoring/config.yml'
-		    bat 'helm install -f values.yml  --namespace monitoring  grafana grafana/grafana'		
+		    bat 'helm install -f values.yml  --namespace monitoring  grafana grafana/grafana'	
+		    bat 'kubectl apply -f /monitoring/namespace	'	
 		    bat 'start python expose-.py '
                 }
             }

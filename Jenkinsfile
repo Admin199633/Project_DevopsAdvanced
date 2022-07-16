@@ -82,7 +82,7 @@ pipeline {
 //             steps {
 //                 script {
 //                     bat 'helm delete rabbitmq consumer producer grafana prometheus '
-//	               bat 'helm delete -n monitoring grafana prometheus'
+//	               bat 'helm delete -n monitoring prometheus grafana'
 // 		       bat 'echo delete helm'
 //                 }
 //             }

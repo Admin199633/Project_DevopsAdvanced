@@ -14,3 +14,18 @@ data:
       access: proxy
       orgId: 1
       url: http://prometheus-server.monitoring.svc.cluster.local
+
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: grafana-dashboards-configmap
+  namespace: monitoring
+data:
+  my-dashboard.json: |-
+    {
+      "annotations": {
+        "list": [
+.
+. this is were your dashboard json goes
+.  
+   }

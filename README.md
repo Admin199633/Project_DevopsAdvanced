@@ -11,6 +11,14 @@
 
 
 
+# Fullprocess 
+
+
+
+https://user-images.githubusercontent.com/108216254/179418899-cdc9be9e-a9c9-4b57-a0c0-0eef3bd8fbe5.mp4
+
+
+
 # Creata DND(docker in docker):
 ```
 kubectl apply -f docker.yml

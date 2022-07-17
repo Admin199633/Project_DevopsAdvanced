@@ -43,13 +43,15 @@ def producer():
             if channel.basic_publish('', q_name, args.message):
                 LOG.info('Message has been delivered')
             else:
-                LOG.warning('Message has been delivered')
-		
-    
-	    sleep(16)
-    
+                LOG.warning('Message NOT delivered')
+
+            sleep(13)
+
         connection.close()
-        
+
+
 while (0==0):
-   producer()
+    producer()
+ 
    
+

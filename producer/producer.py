@@ -46,10 +46,10 @@ def producer():
                 LOG.warning('Message has been delivered')
 		
     
-            sleep(2)
+	    sleep(16)
     
         connection.close()
         
 while (0==0):
    producer()
-   sleep(20)
+   

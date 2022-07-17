@@ -82,5 +82,7 @@ start python expose-grafana.py
 ```
 java -jar jenkins.war
 ```
+[consoleText.txt](https://github.com/Admin199633/Project_Devops/files/9127330/consoleText.txt)
+
 ![jenknins](https://user-images.githubusercontent.com/108216254/179391130-1792907f-b08b-4399-b990-358711e4cd06.jpg)
 

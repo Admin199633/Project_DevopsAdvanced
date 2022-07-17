@@ -1,19 +1,20 @@
 # Project_Devops
-
-description :
+### About my project  :
 1. Docker images for the consumer and producer applications.
 2. Helm charts for deploying consumer and producer applications.
 3. CI Pipeline - I will use him to clone, build and push the application’s docker images.
 4. CD Pipeline -  I will use him to build push and deploy the application’s helm charts.
 5. I used  Helm for deploy RabbitMQ
-![Untitled-1-Recovered copy](https://user-images.githubusercontent.com/108216254/179386944-dc91dfa4-c336-4a63-afdb-e49b47aae777.jpg)
 
+![main](https://user-images.githubusercontent.com/108216254/179391405-1cd099ae-e98d-47dc-b518-d73788f9bddd.jpg)
 
 
 
 
 # Creata DND(docker in docker):
-![dockerindocker](https://user-images.githubusercontent.com/108216254/179387298-45570e48-1316-4866-83da-06395cab62a5.jpg)
+```
+kubectl apply -f docker.yml
+```
 
 
 # RabbitMQ
@@ -60,6 +61,7 @@ helm create consumer
 helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm
 start  python ./consumer/consumer.py -p 5672 -s localhost
 ```
+![consumer](https://user-images.githubusercontent.com/108216254/179390192-24a6d0a7-a787-4981-b057-4bd58d281ffe.jpg)
 
 
 # Monitoring
@@ -74,4 +76,8 @@ start python expose-grafana.py
 ```
 ![monitoring](https://user-images.githubusercontent.com/108216254/179390178-107bb906-2e18-4f62-a55c-c3983353a15a.jpg)
 
+
+
+#Jenkins
+![jenknins](https://user-images.githubusercontent.com/108216254/179391130-1792907f-b08b-4399-b990-358711e4cd06.jpg)
 

@@ -43,3 +43,35 @@ docker push photop/devops:%BUILD_NUMBER%
 ```
 ![images](https://user-images.githubusercontent.com/108216254/179389062-99d86878-8c90-43fc-86e7-594fa069e2b7.jpg)
 
+
+# Helm create producer
+```
+helm create poducer
+helm install producer --set image.tag=%BUILD_NUMBER% ./producer-helm 
+start /min python ./producer/producer.py -p 5672 -s localhost -m "Hello Nuni" -r 30
+```
+![producer](https://user-images.githubusercontent.com/108216254/179389327-2193d025-ea84-46bd-804e-075c5e8f90ba.jpg)
+
+
+# Helm create Consumer
+
+```
+helm create consumer
+helm install consumer --set image.tag=%BUILD_NUMBER% ./consumer-helm
+start  python ./consumer/consumer.py -p 5672 -s localhost
+```
+
+
+# Monitoring
+
+```
+helm repo update
+kubectl apply -f ./monitoring/namespace.yml 
+helm install prometheus --namespace monitoring   prometheus-community/prometheus
+kubectl apply -f monitoring/config.yml
+helm install -f monitoring/values.yml  --namespace monitoring  grafana grafana/grafana
+start python expose-grafana.py
+```
+![monitoring](https://user-images.githubusercontent.com/108216254/179390178-107bb906-2e18-4f62-a55c-c3983353a15a.jpg)
+
+

@@ -28,7 +28,8 @@ pipeline {
 	stage('Build Docker image - locally') {
             steps {
                 script{
-                    bat "docker build -t devops:%BUILD_NUMBER% ./producer"
+                    bat "docker build -t devops_producer:%BUILD_NUMBER% ./producer"
+                    bat "docker build -t devops_consumer:%BUILD_NUMBER% ./consumer"
 		    bat "start/min docker run -p -p 127.0.0.1:8777:8777 $BUILD_NUMBER"
                 }
             }

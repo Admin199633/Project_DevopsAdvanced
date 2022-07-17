@@ -78,6 +78,9 @@ start python expose-grafana.py
 
 
 
-#Jenkins
+# Jenkins
+```
+java -jar jenkins.war
+```
 ![jenknins](https://user-images.githubusercontent.com/108216254/179391130-1792907f-b08b-4399-b990-358711e4cd06.jpg)
 

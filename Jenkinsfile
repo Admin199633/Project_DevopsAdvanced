@@ -72,7 +72,7 @@ pipeline {
 		    bat 'kubectl apply -f ./monitoring/namespace.yml '
 		    bat 'helm install prometheus --namespace monitoring   prometheus-community/prometheus'	
 	            bat 'kubectl apply -f monitoring/config.yml'
-		    bat 'helm install -f monitoring/values.yml  --namespace monitoring  grafana grafana/grafana'
+		    bat 'helm install -f monitoring/values.yml  --namespace monitoring --set service.port=3000  grafana grafana/grafana'
 		    bat 'kubectl get pods -n monitoring'	
 		    bat 'ping -n 25 127.0.0.1 > nul'	
 		    bat 'start python expose-grafana.py'
